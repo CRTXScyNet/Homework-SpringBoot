@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class CalcController {
+public class CalculatorController {
     private final CalculatorInterface calculator;
 
-    CalcController(CalculatorInterface calculator){
+    CalculatorController(CalculatorInterface calculator){
         this.calculator = calculator;
     }
     @GetMapping
