@@ -14,8 +14,8 @@ public class CalculatorImpl implements CalculatorInterface {
     public String welcome() {
         return "Добро пожаловать в калькулятор";
     }
-
-    public String plus(@RequestParam("num1") String n1, @RequestParam("num2") String n2) {
+    @Override
+    public String plus( String n1,String n2) {
         String check = checkNumbers(n1, n2);
         if (check == null) {
             return n1 + " + " + n2 + " = " + String.valueOf(Integer.parseInt(n1) + Integer.parseInt(n2));
@@ -23,8 +23,8 @@ public class CalculatorImpl implements CalculatorInterface {
             return check;
         }
     }
-
-    public String minus(@RequestParam("num1") String n1, @RequestParam("num2") String n2) {
+    @Override
+    public String minus(String n1,String n2) {
         String check = checkNumbers(n1, n2);
         if (check == null) {
             return n1 + " - " + n2 + " = " + String.valueOf(Integer.parseInt(n1) - Integer.parseInt(n2));
@@ -32,8 +32,8 @@ public class CalculatorImpl implements CalculatorInterface {
             return check;
         }
     }
-
-    public String multiply(@RequestParam("num1") String n1, @RequestParam("num2") String n2) {
+    @Override
+    public String multiply(String n1,String n2) {
         String check = checkNumbers(n1, n2);
         if (check == null) {
             return n1 + " * " + n2 + " = " + String.valueOf(Integer.parseInt(n1) * Integer.parseInt(n2));
@@ -41,8 +41,8 @@ public class CalculatorImpl implements CalculatorInterface {
             return check;
         }
     }
-
-    public String divide(@RequestParam("num1") String n1, @RequestParam("num2") String n2) {
+    @Override
+    public String divide(String n1,String n2) {
         String check = checkNumbers(n1, n2);
         if (check == null) {
             double num1 = Integer.parseInt(n1);
