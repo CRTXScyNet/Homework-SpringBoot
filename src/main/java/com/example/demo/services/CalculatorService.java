@@ -1,7 +1,6 @@
-package com.example.demo;
+package com.example.demo.services;
 
-public interface CalculatorInterface {
-    String hello();
+public interface CalculatorService {
 
     String welcome();
 
@@ -13,5 +12,5 @@ public interface CalculatorInterface {
 
     String divide(String n1, String n2);
 
-    String checkNumbers(String n1, String n2);
+    void checkNumbers(String n1, String n2);
 }
