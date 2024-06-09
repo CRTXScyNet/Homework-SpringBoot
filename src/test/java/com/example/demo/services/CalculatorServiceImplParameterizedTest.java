@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.exceptions.DivideByZeroException;
+import com.example.demo.exceptions.NotNumberException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -81,6 +82,47 @@ class CalculatorServiceImplParameterizedTest {
     @Test
     void divideByZero() {
         assertThrows(DivideByZeroException.class, () -> out.divide("5", "0"));
+    }
 
+    @ParameterizedTest
+    @MethodSource(value = "nullNumberArguments")
+    void checkNullNumbers1(String num1, String num2) {
+        assertThrows(IllegalArgumentException.class, () -> out.checkNumbers(num1, num2));
+    }
+
+    public static Stream<Arguments> nullNumberArguments() {
+        return Stream.of(
+                Arguments.of(null, "1"),
+                Arguments.of("1", null),
+                Arguments.of(null, null)
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource(value = "blankNumberArguments")
+    void checkBlankNumbers1(String num1, String num2) {
+        assertThrows(IllegalArgumentException.class, () -> out.checkNumbers(num1, num2));
+    }
+
+    public static Stream<Arguments> blankNumberArguments() {
+        return Stream.of(
+                Arguments.of("", "1"),
+                Arguments.of("1", ""),
+                Arguments.of("", "")
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource(value = "notNumbersArguments")
+    void checkNotNumbers(String num1, String num2) {
+        assertThrows(NotNumberException.class, () -> out.checkNumbers(num1, num2));
+    }
+
+    public static Stream<Arguments> notNumbersArguments() {
+        return Stream.of(
+                Arguments.of("f", "1"),
+                Arguments.of("1", "f"),
+                Arguments.of("f", "f")
+        );
     }
 }

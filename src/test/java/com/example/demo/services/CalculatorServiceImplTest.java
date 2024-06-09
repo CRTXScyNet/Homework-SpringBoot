@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.exceptions.DivideByZeroException;
+import com.example.demo.exceptions.NotNumberException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -60,6 +61,50 @@ class CalculatorServiceImplTest {
     @Test
     void divideByZero() {
         assertThrows(DivideByZeroException.class, () -> out.divide("5", "0"));
+    }
 
+    @Test
+    void checkNullNumbers1() {
+        assertThrows(IllegalArgumentException.class, () -> out.checkNumbers(null, "1"));
+    }
+
+    @Test
+    void checkNullNumbers2() {
+        assertThrows(IllegalArgumentException.class, () -> out.checkNumbers("1", null));
+    }
+
+    @Test
+    void checkNullNumbers3() {
+        assertThrows(IllegalArgumentException.class, () -> out.checkNumbers(null, null));
+    }
+
+    @Test
+    void checkBlankNumbers1() {
+        assertThrows(IllegalArgumentException.class, () -> out.checkNumbers("1", ""));
+    }
+
+    @Test
+    void checkBlankNumbers2() {
+        assertThrows(IllegalArgumentException.class, () -> out.checkNumbers("", "1"));
+    }
+
+    @Test
+    void checkBlankNumbers3() {
+        assertThrows(IllegalArgumentException.class, () -> out.checkNumbers("", ""));
+    }
+
+    @Test
+    void checkNotNumbers1() {
+        assertThrows(NotNumberException.class, () -> out.checkNumbers("1", "f"));
+    }
+
+    @Test
+    void checkNotNumbers2() {
+        assertThrows(NotNumberException.class, () -> out.checkNumbers("f", "1"));
+    }
+
+    @Test
+    void checkNotNumbers3() {
+        assertThrows(NotNumberException.class, () -> out.checkNumbers("f", "f"));
     }
 }

@@ -1,6 +1,6 @@
 package com.example.demo.exceptions;
 
-public class NotNumberException extends RuntimeException{
+public class NotNumberException extends RuntimeException {
     public NotNumberException() {
     }
 
