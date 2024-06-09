@@ -52,6 +52,7 @@ class CalculatorServiceImplParameterizedTest {
         String s = out.multiply(num1, num2);
         assertEquals(s, expectedResult);
     }
+
     public static Stream<Arguments> multiplyArguments() {
         return Stream.of(
                 Arguments.of("5", "5", "5 * 5 = 25"),
@@ -60,12 +61,14 @@ class CalculatorServiceImplParameterizedTest {
                 Arguments.of("2", "5", "2 * 5 = 10")
         );
     }
+
     @ParameterizedTest
     @MethodSource(value = "divideArguments")
     void divide(String num1, String num2, String expectedResult) {
         String s = out.divide(num1, num2);
         assertEquals(s, expectedResult);
     }
+
     public static Stream<Arguments> divideArguments() {
         return Stream.of(
                 Arguments.of("5", "5", "5 / 5 = 1"),
@@ -74,6 +77,7 @@ class CalculatorServiceImplParameterizedTest {
                 Arguments.of("2", "5", "2 / 5 = 0.4")
         );
     }
+
     @Test
     void divideByZero() {
         assertThrows(DivideByZeroException.class, () -> out.divide("5", "0"));

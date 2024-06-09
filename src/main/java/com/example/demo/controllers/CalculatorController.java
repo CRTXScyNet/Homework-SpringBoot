@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 
+import com.example.demo.exceptions.DivideByZeroException;
 import com.example.demo.services.CalculatorService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +38,10 @@ public class CalculatorController {
 
     @GetMapping(path = "/divide")
     public String divide(@RequestParam("num1") String n1, @RequestParam("num2") String n2) {
-        return calculator.divide(n1, n2);
+        try {
+            return calculator.divide(n1, n2);
+        } catch (DivideByZeroException e) {
+            return e.getMessage();
+        }
     }
 }
